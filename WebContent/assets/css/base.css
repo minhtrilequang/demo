@@ -1,0 +1,270 @@
+
+/* sans-serif:tổng hợp các phần tử k có chân */
+/* p{
+    font-size: 1.2rem;
+} */
+/* Muốn sử dụng font-size:12px hoặc 16px thì sao
+thì dùng font-size:62.5% và ta có thể dùng thành 1.2 = 12px và 1.6rem tương tự */
+
+
+
+:root{
+    --primary-color:#EE4D2D;
+    --white-color:#fff;
+    --black-color:#000;
+    --text-color:#333;
+    --border-color:#dbdbdb;
+    --header-height:120px;
+    --navbar-height:34px;
+    --header-with-search-height:calc(var(--header-height) - var(--navbar-height));
+    --star-gold-color: #FFCE3E;
+}
+
+*{
+    box-sizing: inherit;
+    padding:0;
+    margin:0;
+
+
+}
+/* box-sizing:inherit: kế thừa từ cái thẻ chứa nó */
+
+html{
+    /* font-size: 100%; */
+    /* fontsize được hiểu là 16px */
+    /* HACK */
+    font-size: 62.5%;
+    line-height:1.6rem ;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+
+
+}
+
+/* Nguyen tac 3 cap:
+.grid{
+    .row{
+        .column{
+        }
+        .colum{
+        }
+    
+     .row{
+        .column{
+        }
+        .colum{
+        }    
+    }
+}
+
+
+*/
+/* Responsive */
+.grid{
+    width:1200px;
+    max-width:100%;
+    margin:0 auto;
+
+}
+.grid__full-width{
+    width:100%;
+
+}
+
+.grid__row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left:-5px;
+    margin-right: -5px;
+
+}
+
+/* Cách chia column:
+    - tính ra kích thước 1 column: 100% / 12 = 8.3%
+    - chiếm ra 2 column thì lấy 8.3 * 2= 16.6667%
+*/
+/* Text */
+.grid__column-2{
+    padding-left: 5px;
+    padding-right: 5px;
+    width:16.6667%;
+
+
+}
+/* 12/5 = 2.4
+   10/5:20% */
+.grid__column-2-4{
+    padding-left: 5px;
+    padding-right: 5px;
+    width:20%;
+
+}
+/* 10 / 12 rồi nhân với 100 = 83.3334% */
+.grid__column-10{
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 83.3334%;
+
+}
+
+
+/* Animation */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes growth{
+    from{
+        transform: scale(var(--growth-from));
+    }
+    to{
+        transform: scale(var(--growth-to));
+    }
+}
+/* Modal */
+.modal{
+    position: fixed;
+    top:0;
+    right:0;
+    bottom: 0;
+    left:0;
+    display: flex;
+    animation: fadeIn linear 0.1s;
+}
+.modal__overlay{
+    position: absolute;
+    width:100%;
+    height:100%;
+    background-color: rgba(0 , 0 , 0, 0.4);
+    z-index: 2;
+
+}
+.modal__body{
+    --growth-from: 0.7;
+    --growth-to: 1;
+    /* width:300px;
+    height:300px; */
+    background-color:var(--white-color);
+    margin:auto;
+    position: relative;
+    z-index: 3;
+    animation: growth linear 0.1s;
+}
+
+/* Button style */
+/* .btn{
+    min-width: 124px;
+    height:34px;
+    text-decoration: none;
+    border:none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding:0 12px;
+    outline: none;
+    cursor: pointer;
+    color:var(--text-color); 
+    align-items: center;
+    justify-content: center;
+    display:inline-flex;
+    background-color:var(--white-color);
+    line-height: 1.6rem;
+   
+   
+} */
+.btn {
+    min-width: 124px;
+    height: 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 0 12px;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--white-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6rem;
+    margin-right: 10px;
+  }
+  
+
+
+.btn.btn--size-s{
+    height:32px;
+    font-size:12px;
+    padding:0px 8px;
+
+
+}
+.btn.btn--normal:hover{
+    background-color: rgba(0,0,0,0.05);
+
+}
+.btn.btn--primary{
+    color:var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.btn.btn--disabled{
+    color:#949494;
+    cursor:default;
+    background-color: #c3c3c3 ;
+
+}
+
+/* Selection */
+.select-input{
+    height: 34px;
+    min-width:200px;
+    padding:0 12px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+.select-input__label{
+    font-size:1.4rem;
+ }
+.select-input__icon{
+    font-size:1.4rem;
+    color:rgba(131,131,131);
+    position: relative;
+    top:1px;
+}
+.select-input:hover .select-input__list{
+    display: block;
+}
+.select-input__list{
+    position: absolute;
+    left:0;
+    right:0;
+    top:25px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    padding:8px 16px;
+    list-style: none;
+    display: none;
+}
+
+.select-input__link{
+    font-size: 1.4rem;
+    color:var(--text-color);
+    text-decoration: none;
+    display: block;
+    padding:4px 0;
+}
+.select-input__link:hover{
+    color:var(--primary-color);
+}
